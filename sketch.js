@@ -204,8 +204,8 @@ class BADGUYS {
     this.w2 = 55;
     this.h2= 65;
     console.log("initial this.x2 pos =", this.x2);
-    this.xspeed = random(-2, 2);
-    this.yspeed = random(-2, 2);
+    this.xspeed = random(0, 2);
+    this.yspeed = random(0, 2);
   }
 
 displayBADGUYS() {
