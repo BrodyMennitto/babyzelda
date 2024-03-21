@@ -21,6 +21,8 @@ function setup() {
   background(200);
   hero = new HERO();
   rupee = new RUPEE();
+
+  
   synth1 = new p5.MonoSynth();
   synth1.setADSR(0.1, 0.5, 0.1, 0.5);
 
@@ -198,7 +200,7 @@ class HERO {
 class BADGUYS {
   constructor() {
     this.x2 = random(width);
-    this.y2 = random(100, 275);
+    this.y2 = random(175, 275);
     this.w2 = 55;
     this.h2= 65;
     console.log("initial this.x2 pos =", this.x2);
@@ -286,6 +288,10 @@ checkCollision() {
 
 function draw() {
  background(0, 125, 100);
+ textAlign(CENTER);
+ textSize(12);
+  text("click mouse for sound, then pick up the rupee", width/2, 20);
+  
     //keyPressed();
 
   for (var x = 0; x < width; x += width / 8) {
