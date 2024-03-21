@@ -13,12 +13,14 @@ let sequence1 = [3, 5, 4, 6, 0, 2, 4];
 let sequence2 = [1, 3, 2, 4, 5, 0, 6];
 let index = 0;
 let hero;
+let rupee;
 
 
 function setup() {
   createCanvas(400, 400);
   background(200);
   hero = new HERO();
+  rupee = new RUPEE();
   synth1 = new p5.MonoSynth();
   synth1.setADSR(0.1, 0.5, 0.1, 0.5);
 
@@ -196,7 +198,7 @@ class HERO {
 class BADGUYS {
   constructor() {
     this.x2 = random(width);
-    this.y2 = random(height + 50);
+    this.y2 = random(100, 275);
     this.w2 = 55;
     this.h2= 65;
     console.log("initial this.x2 pos =", this.x2);
@@ -223,7 +225,7 @@ displayBADGUYS() {
  }
 
 moveBADGUYS() {    
-  this.y2 = this.y2 + this.yspeed;
+ //this.y2 = this.y2 + this.yspeed;
   this.x2 = this.x2 + this.xspeed;
 
 if (this.x2 > width -  20 || this.x2 < 20){
@@ -237,15 +239,48 @@ if (this.y2 > height - 20 || this.y2 < 20){
      }
     }
 
-    
- 
 checkCollision() {
   if(hero.x + hero.w > this.x2 && hero.x < this.x2 + this.w2 &&
     hero.y + hero.h > this.y2 && hero.y < this.y2 + this.h2)
     {console.log('bumped!');
-      hero.y = height - 50;
+      hero.y = height - 2;
        // reset frog pos
   }
+}
+}
+
+class RUPEE {
+  constructor(){
+  this.x3 = 0;
+  this.y3 = 0;
+  this.w3 = 50;
+  this.h3 = 50;
+}
+
+displayRUPEE(){
+beginShape();
+stroke(0, 0, 255);
+strokeWeight(1)
+fill(255);
+vertex(this.x3 + 40, this.y3 + 20);
+vertex(this.x3 + 50, this.y3 + 30);
+vertex(this.x3 + 50, this.y3 + 50);
+vertex(this.x3 + 40, this.y3 + 60);
+vertex(this.x3 + 30, this.y3 + 50);
+vertex(this.x3 + 30, this.y3 + 30);
+vertex(this.x3 + 40, this.y3 + 20);
+endShape();
+}
+
+checkCollision() {
+  if(hero.x + hero.w > this.x3 && hero.x < this.x3 + this.w3 &&
+    hero.y + hero.h > this.y3 && hero.y < this.y3 + this.h3)
+    {console.log("you win!");
+    textSize(40);
+    textAlign(CENTER);
+    fill("yellow");
+    text("YOU WIN!", width/2, height/2);
+      }
 }
 }
 
@@ -274,16 +309,25 @@ function draw() {
       
     }
 } 
-
+  rupee.displayRUPEE();
   hero.moveHero();
   hero.displayHero();
+  
+
 
   for (let b = 0; b < badGuy.length; b++){
     badGuy[b].displayBADGUYS();
     badGuy[b].moveBADGUYS();
     badGuy[b].checkCollision();
   }
+  rupee.checkCollision();
+
 }
+
+
+
+
+
 
 // function keyPressed() {
 //   if (keyCode === UP_ARROW && keyIsPressed) {
