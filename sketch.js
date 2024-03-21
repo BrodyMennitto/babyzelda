@@ -260,8 +260,8 @@ class RUPEE {
 displayRUPEE(){
 beginShape();
 stroke(0, 0, 255);
-strokeWeight(1)
-fill(255);
+strokeWeight(2);
+fill(0, 125, 255);
 vertex(this.x3 + 40, this.y3 + 20);
 vertex(this.x3 + 50, this.y3 + 30);
 vertex(this.x3 + 50, this.y3 + 50);
